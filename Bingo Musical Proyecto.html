@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Musical</title>
+    <style>
+        /* Variables de color basadas en el logo */
+        :root {
+            --azul-oscuro: #1B2838;
+            --azul-medio: #2A4D69;
+            --azul-claro: #4A90E2;
+            --rosa-acento: #E91E63;
+            --fondo-claro: #F5F7FA;
+        }
+
+        /* Estilos generales */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, var(--blanco) 0%, var(--azul-medio) 100%);
+            color: var(--fondo-claro);
+            font-family: Arial, sans-serif;
+        }
+
+        .logo-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 40px auto 20px;
+            padding: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .contenido-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .titulos {
+            text-align: center;
+            color: var(--azul-oscuro);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--azul-medio);
+            text-align: center;
+            margin: 30px 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        .video-container {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(27, 40, 56, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .video-overlay:hover {
+            background: rgba(27, 40, 56, 0.6);
+        }
+
+        .play-button {
+            width: 100px;
+            height: 100px;
+            background: var(--rosa-acento);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .play-button::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 20px 0 20px 35px;
+            border-color: transparent transparent transparent white;
+            transform: translateX(3px);
+            transition: transform 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(233, 30, 99, 0.6);
+        }
+
+        .play-button:hover::before {
+            transform: translateX(3px) scale(1.1);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                max-width: 90%;
+                margin: 20px auto;
+            }
+
+            .contenido-container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .play-button {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="E:\Logo Bingo.png" alt="Bingo Musical por Wallasz" class="logo">
+    </div>
+    
+    <div class="contenido-container">
+        <p class="titulos">Esta es una plataforma lúdica en la que ponemos a prueba tus conocimientos musicales.</p>
+    
+        <h2>Dale Play al juego</h2>
+
+        <div class="video-container">
+            <div class="video-overlay" id="playOverlay">
+                <div class="play-button"></div>
+            </div>
+            <iframe id="videoPlayer" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        const videos = [
+            'https://www.youtube.com/embed/lrcj9bEwkvU',
+            'https://www.youtube.com/embed/HxKPiIuI2iw',
+            'https://www.youtube.com/embed/bqceAtemIqQ',
+            'https://www.youtube.com/embed/1GmIHWIHhYE',
+            'https://www.youtube.com/embed/nwmyl2bjHDY'
+        ];
+    
+        let remainingVideos = [...videos]; // Lista de videos que quedan por reproducir
+        const videoPlayer = document.getElementById('videoPlayer');
+        const playOverlay = document.getElementById('playOverlay');
+        let currentVideoIndex = -1;
+    
+        function playRandomVideo() {
+            if (remainingVideos.length === 0) {
+                // Si ya no quedan videos por reproducir, reiniciamos la lista de videos
+                remainingVideos = [...videos];
+            }
+    
+            // Escoger un video aleatorio de los restantes
+            const randomIndex = Math.floor(Math.random() * remainingVideos.length);
+            const videoUrl = remainingVideos[randomIndex];
+    
+            // Eliminar el video elegido de la lista
+            remainingVideos.splice(randomIndex, 1);
+    
+            // Cambiar el src del iframe para reproducir el video
+            videoPlayer.src = videoUrl + '?autoplay=1';
+            playOverlay.style.display = 'none';
+        }
+    
+        playOverlay.addEventListener('click', playRandomVideo);
+    
+        // Preparar el primer video sin reproducirlo
+        videoPlayer.src = videos[0];
+        playOverlay.style.display = 'flex';
+    
+        // Mostrar overlay cuando termine el video
+        videoPlayer.addEventListener('ended', () => {
+            playOverlay.style.display = 'flex';
+            videoPlayer.src = ''; // Detener el video
+        });
+    </script>
+    
+</body>
+</html>
+
+</div>
+        
+<!-- Nueva sección de descarga -->
+<div class="download-section">
+    <h2 class="download-title">Descarga los cartones para jugar</h2>
+    <div class="download-container">
+        <a href="https://drive.google.com/file/d/18EoG-XQoL-wWoYOfPIe0zVOTKWNCSAzt/view?usp=drive_link" class="download-link" target="_blank" rel="noopener noreferrer">
+            <!-- Icono de Google Drive usando Material Icons -->
+            <img src="E\Google-Drive-logo.png" style="font-size: 24px;" class="Google-Drive-logo">
+            <span>Descargar cartones de Bingo Musical</span>
+        </a>
+    </div>
+</div>
+
+

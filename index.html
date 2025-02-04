@@ -205,146 +205,18 @@
     </div>
 
     <script>
-    const videos = [
-        'https://drive.google.com/file/d/10OQCQzpoGvYLtCu86sAPquff7qocnhot/view', 
-        'https://drive.google.com/file/d/1yXHoa92z-g7Gcb3IJP01EFRdvyC3Jtzq/view', 
-        'https://drive.google.com/file/d/1-zmXR6NlcdsDUWzMlSv0n8KnT4dJdNCa/view', 
-        'https://drive.google.com/file/d/1jrhSVPFsLC5XMTkO4gn6gSL9iDycFpOQ/view', 
-        'https://drive.google.com/file/d/1fqWfmt_gI4eWlPxcMme9m9lX12gtSQh8/view', 
-        'https://drive.google.com/file/d/1kAUfpMZxARdN-VlJIBa1kwrzMgoBrFgn/view', 
-        'https://drive.google.com/file/d/1gXYKkPAQeHE_wiBx7Tae6ezIQQrM5Cux/view', 
-        'https://drive.google.com/file/d/19gnrFAkR8k7jHY0JNt1tx0OZG8XVFgGT/view', 
-        'https://drive.google.com/file/d/1lJ43WeJjKbZyqlxo3SP0_giP3enzL1-O/view', 
-        'https://drive.google.com/file/d/1ya2xQD_iAAuyiaZXbMuF1HVlitp8w4N2/view', 
-        'https://drive.google.com/file/d/1dDi6uj4I2_EAYYy4iQ35aAXomabEUASD/view', 
-        'https://drive.google.com/file/d/10iCWV4VUfEFnR23LQOspoBmUZ8VPHmMR/view', 
-        'https://drive.google.com/file/d/1o3aIloQcopZ1BC_2mTYNFjQpoU_j0G3p/view', 
-        'https://drive.google.com/file/d/1SoHE5mDr25auDOh7vJK2d13CFlB0zMTb/view', 
-        'https://drive.google.com/file/d/132dAFs1P0zjfkFKwtA0-AGuXs2qTH63s/view', 
-        'https://drive.google.com/file/d/1s6engpArNHRF_kQSYFao2RWeJ0jzY99t/view', 
-        'https://drive.google.com/file/d/1f1k3mWPsir8CoxHESWXsSKbbF3HP-LMX/view', 
-        'https://drive.google.com/file/d/1yCXhI4sI-G49C0b82aq3ESxW19PQEy7B/view', 
-        'https://drive.google.com/file/d/1J1i1TayUVBdNRchFJj_D-ysOZMqekMlv/view', 
-        'https://drive.google.com/file/d/1q_E3OVfO0Nk0G9E62X7bFlw9B8hVthfi/view', 
-        'https://drive.google.com/file/d/16ETfphMJro0CNZQL1M7fRQozaa9f6HdE/view', 
-        'https://drive.google.com/file/d/1sfoqewyHVsGJyl-hvwAM3BYQpsF3hC9e/view', 
-        'https://drive.google.com/file/d/1NptMqj5E2uBzuStQieUv-ghKbQcGMWxu/view', 
-        'https://drive.google.com/file/d/1TeIZ0L5d_mMDeFA-vKD6Xm4ygEsWU9_r/view', 
-        'https://drive.google.com/file/d/17VhipXT-wK9xFmyQt4tK3n_EJS_i8-vj/view', 
-        'https://drive.google.com/file/d/1Q9kewv_MwhETbb24Ckjio_U7xLX-Mp45/view', 
-        'https://drive.google.com/file/d/1oRnUe52EHzEtHHCnyE4N8I9X2ut-YWb0/view', 
-        'https://drive.google.com/file/d/1JXczhTZ_JTnESLipmxCEaHl3vf4sABuM/view', 
-        'https://drive.google.com/file/d/1-YGeGDv_m32EPpfXlp72O_FECarGqhO0/view', 
-        'https://drive.google.com/file/d/1-dtjaG99H1J81UitwnDP9AsgYjQB8Z8z/view', 
-        'https://drive.google.com/file/d/1DLlzT1R59YokSqmKC4mK95pCEgvMJdvl/view', 
-        'https://drive.google.com/file/d/1OpWq5cBSMVb8-5xR-PfGIEFSo-ZCwiau/view', 
-        'https://drive.google.com/file/d/1qqu_BfvRJvUCUa21zofFgOD_p6o5hsEo/view', 
-        'https://drive.google.com/file/d/1u1ZMcjrho9HLTa0FMfHM6tRQcChztJJS/view', 
-        'https://drive.google.com/file/d/1TTz8uHJpNUZgr6CeVZyacOPqkbqKBqwi/view', 
-        'https://drive.google.com/file/d/16z2M4i4IuG5BR7sQrTUUyQnVsN18HEik/view', 
-        'https://drive.google.com/file/d/1qKmgraOlWHgDRyDcVGmDu_FcR2YsAa91/view', 
-        'https://drive.google.com/file/d/1ifvtCY7e4cIfbAKTDi-IZJhfDn5HGD5W/view', 
-        'https://drive.google.com/file/d/1VkKkHLfbN_wOs1FE23DNZ0hSrl3ipZxP/view', 
-        'https://drive.google.com/file/d/16MUJeuBtmR9CKLog-mS6oClAAy9dHHVd/view', 
-        'https://drive.google.com/file/d/1kA9hW6MwQLa6EGCvL1-2uTKVsxHtkyf-/view', 
-        'https://drive.google.com/file/d/1Pr_MlhqxZbmwnU5dJHNdZV7RApp5JueW/view', 
-        'https://drive.google.com/file/d/1ha1h7a6qKORkNCD9qnBegnYmZTgqmTBX/view', 
-        'https://drive.google.com/file/d/1gUCfAqj0Xw6QKaJ-xuxIwMo2lLu0v32h/view', 
-        'https://drive.google.com/file/d/1IXKjRlH7_F2UWzn1wzxBH_gCc7ASWreN/view', 
-        'https://drive.google.com/file/d/1MJNiqQVZWxI8Qc-yzRaoxIdHfKSYA0oj/view', 
-        'https://drive.google.com/file/d/1QSZHLf4iu3p1Y_wbaeDOD-uMT3cX3yuz/view', 
-        'https://drive.google.com/file/d/1i9F_Uj4TGQFQ8ZWiRjae3S1qKvmqPkYg/view', 
-        'https://drive.google.com/file/d/1WpmsjeW0LSHk619GRITGhTI-nRS8bW_Q/view', 
-        'https://drive.google.com/file/d/11uhd4HkncNd2-WhygViWwr13_4tut95Q/view', 
-        'https://drive.google.com/file/d/10OQCQzpoGvYLtCu86sAPquff7qocnhot/view', 
-        'https://drive.google.com/file/d/1m-9yJX5ljuEJJiJ_sMMk7BlWNNjepqCd/view', 
-        'https://drive.google.com/file/d/1GvLAlLReNg2HUgmamzQcA8eiCr95xia8/view', 
-        'https://drive.google.com/file/d/1BI-PmYzdNWVm-tfph2vxhlpXkDB5i394/view', 
-        'https://drive.google.com/file/d/1qoxoRlH0fcg17Vf-lv-xbFvlum_hPq9M/view', 
-        'https://drive.google.com/file/d/1xRQlMrjRsWxhiKu-pJbXQsXwWWe_SYWU/view', 
-        'https://drive.google.com/file/d/1UEXY6aSU3pqT6UyclUAcHBLcnBswPtih/view', 
-        'https://drive.google.com/file/d/18jnGCyr7moyszVUg0JvzW39xi4oeTHQT/view', 
-        'https://drive.google.com/file/d/1O8GVslJ8NUPaGZqahFXb1FmjVD_ijJCp/view', 
-        'https://drive.google.com/file/d/19L3-P5r_mAKUHBYUsqhzGrSRwEX1OdeJ/view', 
-        'https://drive.google.com/file/d/1o0CrOrGWjNi4czGCiBQV9MLJhi3AMU0V/view', 
-        'https://drive.google.com/file/d/1ezwuAzUUNFylhum_8jYE41NoDW1ncjuG/view', 
-        'https://drive.google.com/file/d/1CffXX_Ibg__hXhSj06DRCYY_lgGihvU1/view', 
-        'https://drive.google.com/file/d/1Jc_Nw4jQfmYGitaaaowLKb2J8IxcJLSz/view', 
-        'https://drive.google.com/file/d/1-Cb3qIffR8nPggKl57AVNyTVI-DE9xaw/view', 
-        'https://drive.google.com/file/d/1CiPkU2nY4_2t18bAyOr3L6zeyluwNZ1h/view', 
-        'https://drive.google.com/file/d/1kfjoAJ8Rg4i0gFMGWwQbHeia1SqwVruv/view', 
-        'https://drive.google.com/file/d/1a2x40uJ49RYv2xzaHiGOYjFsl-0hC9Z3/view', 
-        'https://drive.google.com/file/d/1WBwvcjUdBtLyzxn7vV-RC7BjS-mMvaZ3/view', 
-        'https://drive.google.com/file/d/1pyGSx_Dx83Cn2taDnBMMd1R_5ffdEFp7/view', 
-        'https://drive.google.com/file/d/1XOyNDc4LkZ2gGwINMra2G1_7diaf000W/view', 
-        'https://drive.google.com/file/d/1k8aQ6xHAggLmclMNcW_fRCWTzlsK6Hzh/view', 
-        'https://drive.google.com/file/d/14hNk9aPCRHtzGwYYwi4DdEAR_CzAufmQ/view', 
-        'https://drive.google.com/file/d/14SCsoTAqnH6MOjbeDfGFd29S7IJbsPj8/view', 
-        'https://drive.google.com/file/d/1n7Bac-pi7CbZmraqmQK9SgrgJd5trarM/view', 
-        'https://drive.google.com/file/d/1GHtXQe_1Bj-4m2Fh6_O_5_M_2nbP0CUR/view', 
-        'https://drive.google.com/file/d/1ujjhNpUOgaOWCF0f6PDhy-FyM09s5Vd1/view', 
-        'https://drive.google.com/file/d/1epDNnF-1_DIjPrq_2T0epvaGlyUYGfEc/view', 
-        'https://drive.google.com/file/d/1wvstbcf_6VFCSMy3-xzyrk_1I7mMArXX/view', 
-        'https://drive.google.com/file/d/1lM97L9uGbXt7BXUGM_EKc5iPhkRC-UOS/view', 
-        'https://drive.google.com/file/d/15378NKUnhQ5nh_FXQM4mO2VSFgtNODaP/view', 
-        'https://drive.google.com/file/d/1CDUlSGmoLmGacsL5EsgNCrkr57sJLme3/view', 
-        'https://drive.google.com/file/d/1EAL2jWl7xWmZprhTpOaVKmexeITdnIlI/view', 
-        'https://drive.google.com/file/d/1EzWTqkpaaTVcpK_JWpikqxoUzoFeH0p6/view', 
-        'https://drive.google.com/file/d/1qs2JHfYDWcmrSU53baxNmHNftFI46TSv/view',
-        'https://drive.google.com/file/d/1X3F_WxMXt8NC8feQp64AmPKeFOTCvJgx/view', 
-        'https://drive.google.com/file/d/1urHkvV2nlWakSZOIk_Epln6RffUqD-5n/view', 
-        'https://drive.google.com/file/d/1wbdYM8A-MIuzqhOINtuDFUTPN1n-p6ej/view', 
-        'https://drive.google.com/file/d/1TfvxaFINuqWx8-mtoDRA1McDMYm1TIwI/view', 
-        'https://drive.google.com/file/d/1owJxmSzn9xPjG7o5lXJT_onlgkofcCha/view', 
-        'https://drive.google.com/file/d/18ueP_dFXkCpaEHltWG3iFpd_F2btc8Vl/view', 
-        'https://drive.google.com/file/d/1mTT-n1MQAkg5MwLyh0rvbuhuU1uOdALk/view', 
-        'https://drive.google.com/file/d/154o7Pm3hlsFiEsZq9380QXghn8d79hqQ/view', 
-        'https://drive.google.com/file/d/1LEvo-ItCXVMCavizouA8Y_9MylE53-Zp/view', 
-        'https://drive.google.com/file/d/1-26v0EltCpLuJ3XdBhha4QfYoLadgMZe/view', 
-        'https://drive.google.com/file/d/1NVHkkkKezJnICjAUhS91ash-FNphzVIk/view', 
-        'https://drive.google.com/file/d/1fLa5KMSQzhI2PqA7N9TkkYJ_m_fQ2THb/view'
-    ];
-    
-        let remainingVideos = [...videos]; // Lista de videos que quedan por reproducir
-        const videoPlayer = document.getElementById('videoPlayer');
-        const playOverlay = document.getElementById('playOverlay');
-        let currentVideoIndex = -1;
-    
-        function playRandomVideo() {
-            if (remainingVideos.length === 0) {
-                // Si ya no quedan videos por reproducir, reiniciamos la lista de videos
-                remainingVideos = [...videos];
-            }
-    
-            // Escoger un video aleatorio de los restantes
-            const randomIndex = Math.floor(Math.random() * remainingVideos.length);
-            const videoUrl = remainingVideos[randomIndex];
-    
-            // Eliminar el video elegido de la lista
-            remainingVideos.splice(randomIndex, 1);
-    
-            // Cambiar el src del iframe para reproducir el video
-            videoPlayer.src = videoUrl + '?autoplay=1';
-            playOverlay.style.display = 'none';
-        }
-    
-        playOverlay.addEventListener('click', playRandomVideo);
-    
-        // Preparar el primer video sin reproducirlo
-        videoPlayer.src = videos[0];
-        playOverlay.style.display = 'flex';
-    
-        // Mostrar overlay cuando termine el video
-        videoPlayer.addEventListener('ended', () => {
-            playOverlay.style.display = 'flex';
-            videoPlayer.src = ''; // Detener el video
+        document.getElementById('playOverlay').addEventListener('click', function() {
+            // Establecer el URL de YouTube para embebido
+            var iframe = document.getElementById('videoPlayer');
+            iframe.src = "https://www.youtube.com/embed/IjrEzwsYjTo?autoplay=1";  // Autoplay al hacer clic
+            // Ocultar la capa de reproducción
+            this.style.display = "none";
         });
     </script>
     
 </body>
 </html>
 
-</div>
         
 <!-- Nueva sección de descarga -->
 <div class="download-section">
@@ -357,3 +229,4 @@
         </a>
     </div>
 </div>
+

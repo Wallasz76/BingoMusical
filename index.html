@@ -196,6 +196,7 @@
     
         <h2>Dale Play al juego</h2>
 
+        <!-- Video único donde se cambiarán los videos aleatoriamente -->
         <div class="video-container">
             <div class="video-overlay" id="playOverlay">
                 <div class="play-button"></div>
@@ -205,19 +206,34 @@
     </div>
 
     <script>
-        function setupVideo(overlayId, iframeId, videoId) {
-            document.getElementById(overlayId).addEventListener('click', function() {
-                var iframe = document.getElementById(iframeId);
-                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;  // Autoplay al hacer clic
-                this.style.display = "none";
-            });
+        const videoIds = [
+            'IjrEzwsYjTo',  // Primer video
+            'cT2udo0cRn4',  // Segundo video
+            'HxKPiIuI2iw',  // Tercer video
+            'AeVqSMHP-JQ'   // Cuarto video
+        ];
+
+        // Función para seleccionar un video aleatorio
+        function getRandomVideo() {
+            const randomIndex = Math.floor(Math.random() * videoIds.length);
+            return videoIds[randomIndex];
         }
 
-        // Configurar los videos con sus respectivos IDs
-        setupVideo('playOverlay1', 'videoPlayer1', 'cT2udo0cRn4');
-        setupVideo('playOverlay2', 'videoPlayer2', 'HxKPiIuI2iw');
-        setupVideo('playOverlay3', 'videoPlayer3', 'AeVqSMHP-JQ');
-        setupVideo('playOverlay4', 'videoPlayer4', 'IjrEzwsYjTo');
+        // Reemplazar el iframe con el video aleatorio
+        function playRandomVideo() {
+            const videoId = getRandomVideo();
+            const iframe = document.getElementById('videoPlayer');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        }
+
+        // Reproducir un video aleatorio al hacer clic en el overlay
+        document.getElementById('playOverlay').addEventListener('click', function() {
+            playRandomVideo();
+            this.style.display = "none";  // Ocultar overlay una vez que comienza a reproducirse
+        });
+
+        // Iniciar la primera reproducción de video aleatorio
+        playRandomVideo();
     </script>
     
 </body>

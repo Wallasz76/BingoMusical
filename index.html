@@ -213,29 +213,42 @@
             'AeVqSMHP-JQ'   // Cuarto video
         ];
 
+        let player;
+
         // Función para seleccionar un video aleatorio
         function getRandomVideo() {
             const randomIndex = Math.floor(Math.random() * videoIds.length);
             return videoIds[randomIndex];
         }
 
-        // Reemplazar el iframe con el video aleatorio
-        function playRandomVideo() {
-            const videoId = getRandomVideo();
-            const iframe = document.getElementById('videoPlayer');
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        // Crear el reproductor de YouTube
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('videoPlayer', {
+                videoId: getRandomVideo(),
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // Función que maneja el cambio de estado del reproductor
+        function onPlayerStateChange(event) {
+            // Cuando el video termine (estado YT.PlayerState.ENDED)
+            if (event.data === YT.PlayerState.ENDED) {
+                // Cargar un nuevo video aleatorio
+                player.loadVideoById(getRandomVideo());
+            }
         }
 
         // Reproducir un video aleatorio al hacer clic en el overlay
         document.getElementById('playOverlay').addEventListener('click', function() {
-            playRandomVideo();
-            this.style.display = "none";  // Ocultar overlay una vez que comienza a reproducirse
+            this.style.display = "none";  // Ocultar overlay
+            onYouTubeIframeAPIReady();    // Inicializar el reproductor
         });
-
-        // Iniciar la primera reproducción de video aleatorio
-        playRandomVideo();
     </script>
-    
+
+    <!-- Cargar la API de YouTube -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
 
